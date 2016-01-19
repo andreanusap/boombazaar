@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return 'Boom Bazaar Project';
+    //return view('welcome');
 });
 
 /*
