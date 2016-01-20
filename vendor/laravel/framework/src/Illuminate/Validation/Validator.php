@@ -216,7 +216,7 @@ class Validator implements ValidatorContract
     {
         foreach ($rules as $key => $rule) {
             if (Str::contains($key, '*')) {
-                $this->each($key, [$rule]);
+                $this->each($key, $rule);
 
                 unset($rules[$key]);
             } else {
@@ -884,10 +884,6 @@ class Validator implements ValidatorContract
      */
     protected function validateJson($attribute, $value)
     {
-        if (! is_scalar($value) && ! method_exists($value, '__toString')) {
-            return false;
-        }
-
         json_decode($value);
 
         return json_last_error() === JSON_ERROR_NONE;
@@ -1283,11 +1279,9 @@ class Validator implements ValidatorContract
      */
     protected function validateActiveUrl($attribute, $value)
     {
-        if ($url = parse_url($value, PHP_URL_HOST)) {
-            return count(dns_get_record($url, DNS_A | DNS_AAAA)) > 0;
-        }
+        $url = str_replace(['http://', 'https://', 'ftp://'], '', strtolower($value));
 
-        return false;
+        return checkdnsrr($url, 'A');
     }
 
     /**

@@ -267,8 +267,6 @@ trait MakesHttpRequests
                 $this->assertArrayHasKey($value, $responseData);
             }
         }
-
-        return $this;
     }
 
     /**

@@ -12,8 +12,13 @@
 */
 
 Route::get('/', function () {
+	//return 'Boom Bazaar Project';
     return view('welcome');
 });
+
+	Route::get('/about', 'PagesController@about');
+	Route::get('/contact', 'PagesController@contact');
+	Route::get('/home', 'PagesController@home');
 
 /*
 |--------------------------------------------------------------------------

@@ -50,7 +50,7 @@ class Arr
     /**
      * Collapse an array of arrays into a single array.
      *
-     * @param  \ArrayAccess|array  $array
+     * @param  array|\ArrayAccess  $array
      * @return array
      */
     public static function collapse($array)

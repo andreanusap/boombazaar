@@ -9,5 +9,8 @@ use App\Http\Controllers\Controller;
 
 class Hello extends Controller
 {
-    //
+    public function home()
+    {
+    	return view('welcome');
+    }
 }

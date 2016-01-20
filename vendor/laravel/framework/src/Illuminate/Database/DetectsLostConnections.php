@@ -23,7 +23,6 @@ trait DetectsLostConnections
             'Lost connection',
             'is dead or not enabled',
             'Error while sending',
-            'decryption failed or bad record mac',
         ]);
     }
 }

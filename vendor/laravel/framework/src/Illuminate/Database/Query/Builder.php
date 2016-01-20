@@ -3,7 +3,6 @@
 namespace Illuminate\Database\Query;
 
 use Closure;
-use RuntimeException;
 use BadMethodCallException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -708,6 +707,8 @@ class Builder
      */
     public function whereExists(Closure $callback, $boolean = 'and', $not = false)
     {
+        $type = $not ? 'NotExists' : 'Exists';
+
         $query = $this->newQuery();
 
         // Similar to the sub-select clause, we will create a new query instance so
@@ -715,7 +716,11 @@ class Builder
         // compile the whole thing in the grammar and insert it into the SQL.
         call_user_func($callback, $query);
 
-        return $this->addWhereExistsQuery($query, $boolean, $not);
+        $this->wheres[] = compact('type', 'operator', 'query', 'boolean');
+
+        $this->addBinding($query->getBindings(), 'where');
+
+        return $this;
     }
 
     /**
@@ -751,25 +756,6 @@ class Builder
     public function orWhereNotExists(Closure $callback)
     {
         return $this->orWhereExists($callback, true);
-    }
-
-    /**
-     * Add an exists clause to the query.
-     *
-     * @param  \Illuminate\Database\Query\Builder $query
-     * @param  string  $boolean
-     * @param  bool  $not
-     * @return $this
-     */
-    public function addWhereExistsQuery(Builder $query, $boolean = 'and', $not = false)
-    {
-        $type = $not ? 'NotExists' : 'Exists';
-
-        $this->wheres[] = compact('type', 'operator', 'query', 'boolean');
-
-        $this->addBinding($query->getBindings(), 'where');
-
-        return $this;
     }
 
     /**
@@ -1578,30 +1564,6 @@ class Builder
         }
 
         return true;
-    }
-
-    /**
-     * Execute a callback over each item while chunking.
-     *
-     * @param  callable  $callback
-     * @param  int  $count
-     * @return bool
-     *
-     * @throws \RuntimeException
-     */
-    public function each(callable $callback, $count = 1000)
-    {
-        if (is_null($this->orders) && is_null($this->unionOrders)) {
-            throw new RuntimeException('You must specify an orderBy clause when using the "each" function.');
-        }
-
-        return $this->chunk($count, function ($results) use ($callback) {
-            foreach ($results as $key => $value) {
-                if ($callback($item, $key) === false) {
-                    return false;
-                }
-            }
-        });
     }
 
     /**

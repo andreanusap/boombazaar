@@ -2,15 +2,14 @@
 
 namespace Dotenv;
 
-use Dotenv\Exception\InvalidFileException;
-use Dotenv\Exception\InvalidPathException;
+use InvalidArgumentException;
 
 /**
- * This is the loaded class.
+ * Loader.
  *
- * It's responsible for loading variables by reading a file from disk and:
- * - stripping comments beginning with a `#`,
- * - parsing lines that look shell variable setters, e.g `export key = value`, `key="value"`.
+ * Loads Variables by reading a file from disk and:
+ * - stripping comments beginning with a `#`
+ * - parsing lines that look shell variable setters, e.g `export key = value`, `key="value"`
  */
 class Loader
 {
@@ -26,7 +25,7 @@ class Loader
      *
      * @var bool
      */
-    protected $immutable;
+    protected $immutable = false;
 
     /**
      * Create a new loader instance.
@@ -54,7 +53,10 @@ class Loader
         $filePath = $this->filePath;
         $lines = $this->readLinesFromFile($filePath);
         foreach ($lines as $line) {
-            if (!$this->isComment($line) && $this->looksLikeSetter($line)) {
+            if ($this->isComment($line)) {
+                continue;
+            }
+            if ($this->looksLikeSetter($line)) {
                 $this->setEnvironmentVariable($line);
             }
         }
@@ -65,14 +67,19 @@ class Loader
     /**
      * Ensures the given filePath is readable.
      *
-     * @throws \Dotenv\Exception\InvalidPathException
+     * @throws \InvalidArgumentException
      *
      * @return void
      */
     protected function ensureFileIsReadable()
     {
-        if (!is_readable($this->filePath) || !is_file($this->filePath)) {
-            throw new InvalidPathException(sprintf('Unable to read the environment file at %s.', $this->filePath));
+        $filePath = $this->filePath;
+        if (!is_readable($filePath) || !is_file($filePath)) {
+            throw new InvalidArgumentException(sprintf(
+                'Dotenv: Environment file .env not found or not readable. '.
+                'Create file with your environment settings at %s',
+                $filePath
+            ));
         }
     }
 
@@ -80,13 +87,13 @@ class Loader
      * Normalise the given environment variable.
      *
      * Takes value as passed in by developer and:
-     * - ensures we're dealing with a separate name and value, breaking apart the name string if needed,
-     * - cleaning the value of quotes,
-     * - cleaning the name of quotes,
-     * - resolving nested variables.
+     * - ensures we're dealing with a separate name and value, breaking apart the name string if needed
+     * - cleaning the value of quotes
+     * - cleaning the name of quotes
+     * - resolving nested variables
      *
-     * @param string $name
-     * @param string $value
+     * @param $name
+     * @param $value
      *
      * @return array
      */
@@ -95,7 +102,6 @@ class Loader
         list($name, $value) = $this->splitCompoundStringIntoParts($name, $value);
         list($name, $value) = $this->sanitiseVariableName($name, $value);
         list($name, $value) = $this->sanitiseVariableValue($name, $value);
-
         $value = $this->resolveNestedVariables($value);
 
         return array($name, $value);
@@ -188,7 +194,7 @@ class Loader
      * @param string $name
      * @param string $value
      *
-     * @throws \Dotenv\Exception\InvalidFileException
+     * @throws \InvalidArgumentException
      *
      * @return array
      */
@@ -225,7 +231,7 @@ class Loader
 
             // Unquoted values cannot contain whitespace
             if (preg_match('/\s+/', $value) > 0) {
-                throw new InvalidFileException('Dotenv values containing spaces must be surrounded by quotes.');
+                throw new InvalidArgumentException('Dotenv values containing spaces must be surrounded by quotes.');
             }
         }
 
@@ -238,7 +244,7 @@ class Loader
      * Look for {$varname} patterns in the variable value and replace with an existing
      * environment variable.
      *
-     * @param string $value
+     * @param $value
      *
      * @return mixed
      */
@@ -250,10 +256,10 @@ class Loader
                 '/\${([a-zA-Z0-9_]+)}/',
                 function ($matchedPatterns) use ($loader) {
                     $nestedVariable = $loader->getEnvironmentVariable($matchedPatterns[1]);
-                    if ($nestedVariable === null) {
+                    if (is_null($nestedVariable)) {
                         return $matchedPatterns[0];
                     } else {
-                        return $nestedVariable;
+                        return  $nestedVariable;
                     }
                 },
                 $value
@@ -314,13 +320,13 @@ class Loader
      * Set an environment variable.
      *
      * This is done using:
-     * - putenv,
-     * - $_ENV,
+     * - putenv
+     * - $_ENV
      * - $_SERVER.
      *
      * The environment variable value is stripped of single and double quotes.
      *
-     * @param string      $name
+     * @param $name
      * @param string|null $value
      *
      * @return void
@@ -331,12 +337,11 @@ class Loader
 
         // Don't overwrite existing environment variables if we're immutable
         // Ruby's dotenv does this with `ENV[key] ||= value`.
-        if ($this->immutable && $this->getEnvironmentVariable($name) !== null) {
+        if ($this->immutable === true && !is_null($this->getEnvironmentVariable($name))) {
             return;
         }
 
         putenv("$name=$value");
-
         $_ENV[$name] = $value;
         $_SERVER[$name] = $value;
     }
@@ -348,8 +353,8 @@ class Loader
      * method for 3rd party code.
      *
      * This is done using:
-     * - putenv,
-     * - unset($_ENV, $_SERVER).
+     * - putenv
+     * - unset($_ENV, $_SERVER)
      *
      * @param string $name
      *
@@ -360,12 +365,10 @@ class Loader
     public function clearEnvironmentVariable($name)
     {
         // Don't clear anything if we're immutable.
-        if ($this->immutable) {
-            return;
+        if (!$this->immutable) {
+            putenv($name);
+            unset($_ENV[$name]);
+            unset($_SERVER[$name]);
         }
-
-        putenv($name);
-
-        unset($_ENV[$name], $_SERVER[$name]);
     }
 }

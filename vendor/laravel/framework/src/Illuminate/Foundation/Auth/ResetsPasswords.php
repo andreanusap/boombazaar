@@ -62,11 +62,10 @@ trait ResetsPasswords
 
         switch ($response) {
             case Password::RESET_LINK_SENT:
-                return $this->getSendResetLinkEmailSuccessResponse($response);
+                return redirect()->back()->with('status', trans($response));
 
             case Password::INVALID_USER:
-            default:
-                return $this->getSendResetLinkEmailFailureResponse($response);
+                return redirect()->back()->withErrors(['email' => trans($response)]);
         }
     }
 
@@ -81,25 +80,16 @@ trait ResetsPasswords
     }
 
     /**
-     * Get the response for after the reset link has been successfully sent.
+     * Display the password reset view for the given token.
      *
-     * @param  string  $response
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    protected function getSendResetLinkEmailSuccessResponse($response)
-    {
-        return redirect()->back()->with('status', trans($response));
-    }
-
-    /**
-     * Get the response for after the reset link could not be sent.
+     * If no token is present, display the link request form.
      *
-     * @param  string  $response
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  string|null  $token
+     * @return \Illuminate\Http\Response
      */
-    protected function getSendResetLinkEmailFailureResponse($response)
+    public function getReset($token = null)
     {
-        return redirect()->back()->withErrors(['email' => trans($response)]);
+        return $this->showResetForm($token);
     }
 
     /**
@@ -107,34 +97,17 @@ trait ResetsPasswords
      *
      * If no token is present, display the link request form.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  string|null  $token
      * @return \Illuminate\Http\Response
      */
-    public function getReset(Request $request, $token = null)
-    {
-        return $this->showResetForm($request, $token);
-    }
-
-    /**
-     * Display the password reset view for the given token.
-     *
-     * If no token is present, display the link request form.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string|null  $token
-     * @return \Illuminate\Http\Response
-     */
-    public function showResetForm(Request $request, $token = null)
+    public function showResetForm($token = null)
     {
         if (is_null($token)) {
             return $this->getEmail();
         }
 
-        $email = $request->input('email');
-
         if (view()->exists('auth.passwords.reset')) {
-            return view('auth.passwords.reset')->with(compact('token', 'email'));
+            return view('auth.passwords.reset')->with('token', $token);
         }
 
         return view('auth.reset')->with('token', $token);
@@ -175,10 +148,12 @@ trait ResetsPasswords
 
         switch ($response) {
             case Password::PASSWORD_RESET:
-                return $this->getResetSuccessResponse($response);
+                return redirect($this->redirectPath())->with('status', trans($response));
 
             default:
-                return $this->getResetFailureResponse($request, $response);
+                return redirect()->back()
+                            ->withInput($request->only('email'))
+                            ->withErrors(['email' => trans($response)]);
         }
     }
 
@@ -196,30 +171,5 @@ trait ResetsPasswords
         $user->save();
 
         Auth::login($user);
-    }
-
-    /**
-     * Get the response for after a successful password reset.
-     *
-     * @param  string  $response
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    protected function getResetSuccessResponse($response)
-    {
-        return redirect($this->redirectPath())->with('status', trans($response));
-    }
-
-    /**
-     * Get the response for after a failing password reset.
-     *
-     * @param  Request  $request
-     * @param  string  $response
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    protected function getResetFailureResponse(Request $request, $response)
-    {
-        return redirect()->back()
-            ->withInput($request->only('email'))
-            ->withErrors(['email' => trans($response)]);
     }
 }

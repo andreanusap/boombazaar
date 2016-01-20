@@ -211,14 +211,12 @@ class Event
      */
     public function buildCommand()
     {
-        $output = ProcessUtils::escapeArgument($this->output);
-
         $redirect = $this->shouldAppendOutput ? ' >> ' : ' > ';
 
         if ($this->withoutOverlapping) {
-            $command = '(touch '.$this->mutexPath().'; '.$this->command.'; rm '.$this->mutexPath().')'.$redirect.$output.' 2>&1 &';
+            $command = '(touch '.$this->mutexPath().'; '.$this->command.'; rm '.$this->mutexPath().')'.$redirect.$this->output.' 2>&1 &';
         } else {
-            $command = $this->command.$redirect.$output.' 2>&1 &';
+            $command = $this->command.$redirect.$this->output.' 2>&1 &';
         }
 
         return $this->user ? 'sudo -u '.$this->user.' '.$command : $command;
@@ -247,6 +245,7 @@ class Event
         }
 
         return $this->expressionPasses() &&
+               $this->filtersPass($app) &&
                $this->runsInEnvironment($app->environment());
     }
 
@@ -272,7 +271,7 @@ class Event
      * @param  \Illuminate\Contracts\Foundation\Application  $app
      * @return bool
      */
-    public function filtersPass($app)
+    protected function filtersPass($app)
     {
         foreach ($this->filters as $callback) {
             if (! $app->call($callback)) {
@@ -498,16 +497,6 @@ class Event
     }
 
     /**
-     * Schedule the event to run quarterly.
-     *
-     * @return $this
-     */
-    public function quarterly()
-    {
-        return $this->cron('0 0 1 */3 *');
-    }
-
-    /**
      * Schedule the event to run yearly.
      *
      * @return $this
@@ -670,7 +659,7 @@ class Event
      */
     public function sendOutputTo($location, $append = false)
     {
-        $this->output = $location;
+        $this->output = ProcessUtils::escapeArgument($location);
 
         $this->shouldAppendOutput = $append;
 
