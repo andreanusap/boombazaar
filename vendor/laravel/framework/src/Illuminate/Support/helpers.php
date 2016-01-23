@@ -64,7 +64,7 @@ if (! function_exists('array_collapse')) {
     /**
      * Collapse an array of arrays into a single array.
      *
-     * @param  array|\ArrayAccess  $array
+     * @param  \ArrayAccess|array  $array
      * @return array
      */
     function array_collapse($array)
@@ -161,7 +161,7 @@ if (! function_exists('array_get')) {
     /**
      * Get an item from an array using "dot" notation.
      *
-     * @param  array   $array
+     * @param  array|\ArrayAccess   $array
      * @param  string  $key
      * @param  mixed   $default
      * @return mixed
@@ -398,7 +398,7 @@ if (! function_exists('data_get')) {
         while (($segment = array_shift($key)) !== null) {
             if ($segment === '*') {
                 if (! is_array($target) && ! $target instanceof ArrayAccess) {
-                    return $default;
+                    return value($default);
                 }
 
                 $result = Arr::pluck($target, $key);
