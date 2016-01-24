@@ -14,10 +14,10 @@
         <!-- Navbar Right -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="/boombazaar/public/home">Home</a></li>
-                <li><a href="/boombazaar/public/about">About</a></li>
-                <li><a href="/boombazaar/public/contact">Submit Ticket</a></li>
-                <li><a href="/boombazaar/public/tickets">Display Ticket</a></li>
+                <li class="active"><a href="/home">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Submit Ticket</a></li>
+                <li><a href="/tickets">Display Ticket</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Member <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">

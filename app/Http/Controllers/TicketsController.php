@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TicketFormRequest;
+use App\Http\Requests\CommentFormRequest;
 use App\Ticket;
+use App\Comment;
 
 class TicketsController extends Controller
 {
@@ -34,7 +36,9 @@ class TicketsController extends Controller
 	public function show($slug)
 	{
 		$ticket = Ticket::whereSlug($slug)->firstOrFail();
-		return view('tickets.show', compact('ticket'));
+//      	$comments = $ticket->comments()->get();
+     	$comments = Comment::wherePostId($ticket->id)->get();
+    	return view('tickets.show', compact('ticket', 'comments'));
 	}
 	public function edit($slug)
 	{

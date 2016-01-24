@@ -25,6 +25,7 @@ Route::get('/', function () {
 	Route::get('/ticket/{slug?}/edit','TicketsController@edit');
 	Route::post('/ticket/{slug?}/edit','TicketsController@update');
 	Route::post('/ticket/{slug?}/delete','TicketsController@destroy');
+ 	Route::post('/comment', 'CommentsController@newComment');
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +46,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/ticket/{slug?}/edit','TicketsController@edit');
     Route::post('/ticket/{slug?}/edit','TicketsController@update');
     Route::post('/ticket/{slug?}/delete','TicketsController@destroy');
+    Route::post('/comment', 'CommentsController@newComment');
 });
