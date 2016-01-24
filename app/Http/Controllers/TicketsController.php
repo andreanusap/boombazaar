@@ -36,8 +36,8 @@ class TicketsController extends Controller
 	public function show($slug)
 	{
 		$ticket = Ticket::whereSlug($slug)->firstOrFail();
-//      	$comments = $ticket->comments()->get();
-     	$comments = Comment::wherePostId($ticket->id)->get();
+      	$comments = $ticket->comments()->get();
+//      	$comments = Comment::wherePostId($ticket->id)->get();
     	return view('tickets.show', compact('ticket', 'comments'));
 	}
 	public function edit($slug)
