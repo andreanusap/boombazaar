@@ -6,6 +6,7 @@
         <div class="well well bs-component">
 
             <form class="form-horizontal" method="post">
+            	
 				@if (isset($errors) && $errors->any())
 
 					@foreach ($errors->all() as $error)
@@ -14,12 +15,14 @@
 
 				@endif
 
-
-                @if (session('status'))
+				@if (session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}
                     </div>
                 @endif
+                
+                
+                
 
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 

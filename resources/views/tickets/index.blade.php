@@ -7,6 +7,11 @@
                 <div class="panel-heading">
                     <h2> Tickets </h2>
                 </div>
+                @if (session('status1'))
+    				<div class="alert alert-success">
+        			{{ session('status1') }}
+    				</div>
+				@endif
                 @if ($tickets->isEmpty())
                     <p> There is no ticket.</p>
                 @else
