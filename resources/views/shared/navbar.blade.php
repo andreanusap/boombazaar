@@ -19,13 +19,17 @@
 				<li><a href="/tickets">Ticket List</a></li>
 				<li><a href="/about">About</a></li>
 				<li><a href="/contact">Contact</a></li>
+				@if (Auth::check())
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-expanded="false">Hi, {!!Auth::user()->name;!!} <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="/logout">Logout</a></li> 
+						@else
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">Member <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						@if (Auth::check())
-						<li><a href="/logout">Logout</a></li> 
-						@else
 						<li><a href="/register">Register</a></li>
 						<li><a href="/login">Login</a></li> 
 						@endif
