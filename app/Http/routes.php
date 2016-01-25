@@ -27,7 +27,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::auth();
     Route::get('/', 'PagesController@home');
 	Route::get('/home', 'PagesController@home');
-	Route::get('/about', 'PagesController@about');
+	Route::get('/about', ['middleware' => 'auth', 'uses' => 'PagesController@about']);
 	Route::get('/contact', 'TicketsController@create');
 	Route::post('/contact', 'TicketsController@store');
 	Route::get('/tickets', 'TicketsController@index');
