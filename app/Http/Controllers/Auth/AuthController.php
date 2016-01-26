@@ -49,9 +49,17 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+        	'userName' => 'required|max:255',
+        	'firstName' => 'required|max:255',
+        	'lastName' => 'required|max:255',
+        	'birthDate' => 'required|max:255',
+        	'address' => 'required|max:255',
+        	'postalCode' => 'required|max:255',
+        	'phoneHome' => 'required|max:255',
+        	'phoneCell' => 'required|max:255',
+        	'postalCode' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|confirmed|min:6'
         ]);
     }
 
@@ -64,9 +72,17 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'userName' => 'required|max:255',
+        	'firstName' => 'required|max:255',
+        	'lastName' => 'required|max:255',
+        	'birthDate' => 'required|max:255',
+        	'address' => 'required|max:255',
+        	'postalCode' => 'required|max:255',
+        	'phoneHome' => 'required|max:255',
+        	'phoneCell' => 'required|max:255',
+        	'postalCode' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:6'
         ]);
     }
 }
