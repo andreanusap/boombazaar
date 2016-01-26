@@ -7,8 +7,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TicketFormRequest;
 use App\Http\Requests\CommentFormRequest;
-use App\Ticket;
-use App\Comment;
+use App\Model\Ticket;
+use App\Model\Comment;
 use Illuminate\Support\Facades\Mail;
 
 class TicketsController extends Controller {
