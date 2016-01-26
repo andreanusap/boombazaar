@@ -36,4 +36,6 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/ticket/{slug?}/edit','TicketsController@update');
 	Route::post('/ticket/{slug?}/delete','TicketsController@destroy');
  	Route::post('/comment', 'CommentsController@newComment');
+ 	Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
+ 	Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
 });

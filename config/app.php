@@ -156,6 +156,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
     	Collective\Html\HtmlServiceProvider::class,
+    		
+    	/*
+         * Other service providers...
+         */
+    	Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -204,6 +209,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
     	'Form' => Collective\Html\FormFacade::class,
     	'Html' => Collective\Html\HtmlFacade::class,
+    	'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
