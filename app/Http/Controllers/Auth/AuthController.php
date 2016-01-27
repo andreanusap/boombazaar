@@ -87,7 +87,7 @@ class AuthController extends Controller
      */
     public function redirectToProvider($provider)
     {
-    	return Socialite::driver('facebook')->redirect();
+    	return Socialite::driver($provider)->redirect();
     }
     
     /**
@@ -125,14 +125,16 @@ class AuthController extends Controller
     		$providerId = "twitter_id";
     	
     		$authUser = User::where($providerId, $user->id)->first();
-    	if ($authUser){
-    		return $authUser;
-    	}
+    		
     	if ($authUser == NULL)
     	{
     		$authUser = User::where('email', $user->email)->first();
     		User::where('email', $user->email)
     		->update([$providerId => $user->id]);
+    		return $authUser;
+    	}
+    	
+    	if ($authUser){
     		return $authUser;
     	}
     
