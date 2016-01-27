@@ -9,6 +9,23 @@
 <link rel="stylesheet" type="text/css" href="{!! asset('css/datepicker.css') !!}">
 <script src="{!! asset('js/bootstrap.min.js') !!}"></script>
 <script src="{!! asset('js/bootstrap-datepicker.js') !!}"></script>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '852655574851808',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 </head>
 <body>
 

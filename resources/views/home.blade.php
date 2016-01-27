@@ -17,7 +17,12 @@
                 <div class="text-center">
                     <img src="http://learninglaravel.net/img/LearningLaravel5_cover0.png" width="302" height="391" alt="">
                 </div>
-
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
             </div>
 
         </div>

@@ -59,6 +59,11 @@
                             </div>
                         </div>
                     </form>
+                    <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                    <a class="btn btn-info" href="auth/facebook">Login with Facebook</a>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
