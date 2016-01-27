@@ -144,4 +144,10 @@ class AuthController extends Controller
     			$providerId => $user->id,
     	]);
     }
+    
+    private function alala()
+    {
+    	dd(Socialite::driver('facebook')->user());
+    		
+    }
 }
