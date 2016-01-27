@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ProfileFormRequest;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -23,6 +24,6 @@ class ProfileController extends Controller
 		$profile = User::where( 'id',$user )->first();
 		$profile->name = $request->get ( 'name' );
 		$profile->save ();
-		return redirect ( action ( 'profileController@show' ) )->with ( 'status', 'Profile has been updated!' );
+		return redirect ( '/profile' )->with ( 'status', 'Profile has been updated!' );
 	}
 }

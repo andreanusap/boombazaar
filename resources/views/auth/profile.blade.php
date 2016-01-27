@@ -6,7 +6,7 @@
 				<div class="panel-heading">Profile</div>
 				<div class="panel-body">
 					<form class="form-horizontal" role="form" method="POST"
-						action="{{ url('/register') }}">
+						action="{{ url('/profile') }}">
 						{!! csrf_field() !!}
 
 						<div
@@ -39,6 +39,11 @@
 
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="old_password">
+								@if ($errors->has('password_confirmation'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('old_password') }}</strong>
+                                    </span>
+                                @endif
 							</div>
 						</div>
 						
@@ -48,6 +53,11 @@
 
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password">
+								@if ($errors->has('password_confirmation'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
 							</div>
 						</div>
 
@@ -58,6 +68,11 @@
 							<div class="col-md-6">
 								<input type="password" class="form-control"
 									name="password_confirmation">
+									@if ($errors->has('password_confirmation'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                                @endif
 							</div>
 						</div>
 
