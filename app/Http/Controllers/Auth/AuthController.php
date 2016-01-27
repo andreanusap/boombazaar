@@ -51,17 +51,17 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-        	'userName' => 'required|max:255',
-        	'firstName' => 'required|max:255',
-        	'lastName' => 'required|max:255',
-        	'birthDate' => 'required|max:255',
-        	'address' => 'required|max:255',
-        	'postalCode' => 'required|max:255',
-        	'phoneHome' => 'required|max:255',
-        	'phoneCell' => 'required|max:255',
-        	'postalCode' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6'
+//         	'userName' => 'required|max:255',
+//         	'firstName' => 'required|max:255',
+//         	'lastName' => 'required|max:255',
+//         	'birthDate' => 'required|max:255',
+//         	'address' => 'required|max:255',
+//         	'postalCode' => 'required|max:255',
+//         	'phoneHome' => 'required|max:255',
+//         	'phoneCell' => 'required|max:255',
+//         	'postalCode' => 'required|max:255',
+//             'email' => 'required|email|max:255|unique:users',
+//             'password' => 'required|confirmed|min:6'
         ]);
     }
 
@@ -74,17 +74,9 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'userName' => 'required|max:255',
-        	'firstName' => 'required|max:255',
-        	'lastName' => 'required|max:255',
-        	'birthDate' => 'required|max:255',
-        	'address' => 'required|max:255',
-        	'postalCode' => 'required|max:255',
-        	'phoneHome' => 'required|max:255',
-        	'phoneCell' => 'required|max:255',
-        	'postalCode' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6'
+        	'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
         ]);
     }
     
@@ -93,7 +85,7 @@ class AuthController extends Controller
      *
      * @return Response
      */
-    public function redirectToProvider()
+    public function redirectToProvider($provider)
     {
     	return Socialite::driver('facebook')->redirect();
     }
@@ -103,18 +95,17 @@ class AuthController extends Controller
      *
      * @return Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback($provider)
     {
+    	
     	try {
-            $user = Socialite::driver('facebook')->user();
+            $user = Socialite::driver($provider)->user();
         } catch (Exception $e) {
-            return redirect('auth/facebook');
+            return redirect('auth/'+$provider);
         }
-
-        $authUser = $this->findOrCreateUser($user);
- 
+    	
+        $authUser = $this->findOrCreateUser($user,$provider);
         Auth::login($authUser, true);
- 
         return redirect('home');
   
     	// $user->token;
@@ -126,18 +117,29 @@ class AuthController extends Controller
      * @param $facebookUser
      * @return User
      */
-    private function findOrCreateUser($facebookUser)
+    private function findOrCreateUser($user,$provider)
     {
-    	$authUser = User::where('facebook_id', $facebookUser->id)->first();
-    
+    	if($provider =="facebook")
+    		$providerId = "facebook_id";
+    	else 
+    		$providerId = "twitter_id";
+    	
+    		$authUser = User::where($providerId, $user->id)->first();
     	if ($authUser){
+    		return $authUser;
+    	}
+    	if ($authUser == NULL)
+    	{
+    		$authUser = User::where('email', $user->email)->first();
+    		User::where('email', $user->email)
+    		->update([$providerId => $user->id]);
     		return $authUser;
     	}
     
     	return User::create([
-    			'name' => $facebookUser->name,
-    			'email' => $facebookUser->email,
-    			'facebook_id' => $facebookUser->id,
+    			'name' => $user->name,
+    			'email' => $user->email,
+    			$providerId => $user->id,
     	]);
     }
 }

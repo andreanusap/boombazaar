@@ -6,6 +6,21 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Model\\Category' => $baseDir . '/app/Model/Category.php',
+    'App\\Model\\City' => $baseDir . '/app/Model/City.php',
+    'App\\Model\\Comment' => $baseDir . '/app/Model/Comment.php',
+    'App\\Model\\Event' => $baseDir . '/app/Model/Event.php',
+    'App\\Model\\EventImage' => $baseDir . '/app/Model/EventImage.php',
+    'App\\Model\\EventMessages' => $baseDir . '/app/Model/EventMessages.php',
+    'App\\Model\\EventParticipant' => $baseDir . '/app/Model/EventParticipant.php',
+    'App\\Model\\Organizer' => $baseDir . '/app/Model/Organizer.php',
+    'App\\Model\\Product' => $baseDir . '/app/Model/Product.php',
+    'App\\Model\\ProductImage' => $baseDir . '/app/Model/ProductImage.php',
+    'App\\Model\\Region' => $baseDir . '/app/Model/Region.php',
+    'App\\Model\\Shop' => $baseDir . '/app/Model/Shop.php',
+    'App\\Model\\ShopImage' => $baseDir . '/app/Model/ShopImage.php',
+    'App\\Model\\Ticket' => $baseDir . '/app/Model/Ticket.php',
+    'App\\Model\\User' => $baseDir . '/app/Model/User.php',
     'CreateCommentsTable' => $baseDir . '/database/migrations/2016_01_23_130531_create_comments_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateTicketTable' => $baseDir . '/database/migrations/2016_01_21_152109_create_ticket_table.php',
