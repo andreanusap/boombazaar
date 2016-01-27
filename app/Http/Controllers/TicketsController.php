@@ -33,9 +33,9 @@ class TicketsController extends Controller {
 		//fungsi untuk send email ketika buat tiket
 		//mesti melakukan penambahan seting pada .env
 		Mail::send ( 'emails.ticket', $data, function ($message) {
-			$message->from ( 'gabriellintang@gmail.com', 'Learning Laravel' );
+			$message->from ( 'rio.purwanggono@yahoo.co.id', 'Learning Laravel' );
 			
-			$message->to ( 'hermanus_wibisono@yahoo.com' )->subject ( 'There is a new ticket!' );
+			$message->to ( 'rio.purwanggono@gmail.com' )->subject ( 'There is a new ticket!' );
 		} );
 		
 		return redirect ( '/contact' )->with ( 'status', 'Your ticket has been created! Its unique id is: ' . $slug );

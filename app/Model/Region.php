@@ -10,6 +10,6 @@ class Region extends Model {
 			'id' 
 	];
 	public function city() {
-		return $this->hasMany ( 'App\City', 'region_ID' );
+		return $this->hasMany ( 'App\Model\City', 'region_ID' );
 	}
 }

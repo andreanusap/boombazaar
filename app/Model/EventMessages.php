@@ -10,6 +10,6 @@ class EventMessages extends Model {
 			'id' 
 	];
 	public function event() {
-		return $this->belongsTo ( 'App\Event' );
+		return $this->belongsTo ( 'App\Model\Event' );
 	}
 }

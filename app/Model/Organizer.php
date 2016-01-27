@@ -10,9 +10,9 @@ class Organizer extends Model {
 			'id' 
 	];
 	public function user() {
-		return $this->belongsTo ( 'App\User' );
+		return $this->belongsTo ( 'App\Model\User' );
 	}
 	public function events() {
-		return $this->hasMany ( 'App\Events', 'organizer_ID' );
+		return $this->hasMany ( 'App\Model\Events', 'organizer_ID' );
 	}
 }

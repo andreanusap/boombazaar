@@ -10,16 +10,16 @@ class Shop extends Model {
 			'id' 
 	];
 	public function category() {
-		return $this->belongsTo ( 'App\Category' );
+		return $this->belongsTo ( 'App\Model\Category' );
 	}
 	public function user() {
-		return $this->belongsTo ( 'App\User' );
+		return $this->belongsTo ( 'App\Model\User' );
 	}
 	public function shopImage() {
-		return $this->hasMany ( 'App\ShopImage', 'shop_ID' );
+		return $this->hasMany ( 'App\Model\ShopImage', 'shop_ID' );
 	}
 	public function product() {
-		return $this->hasMany ( 'App\Product', 'shop_ID' );
+		return $this->hasMany ( 'App\Model\Product', 'shop_ID' );
 	}
 	public function eventParticipant() {
 		return $this->hasMany ( 'App\EventParticipant', 'shop_ID' );

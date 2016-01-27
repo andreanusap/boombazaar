@@ -70,7 +70,7 @@ return array(
     'Collective\\Html\\HtmlBuilder' => $vendorDir . '/laravelcollective/html/src/HtmlBuilder.php',
     'Collective\\Html\\HtmlFacade' => $vendorDir . '/laravelcollective/html/src/HtmlFacade.php',
     'Collective\\Html\\HtmlServiceProvider' => $vendorDir . '/laravelcollective/html/src/HtmlServiceProvider.php',
-    'CreateCommentsTable' => $baseDir . '/database/migrations/2016_01_23_130531_create_comments_table.php',
+    'CreateCommentsTable' => $baseDir . '/database/migrations/2016_01_24_120312_create_comments_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateTicketTable' => $baseDir . '/database/migrations/2016_01_21_152109_create_ticket_table.php',
     'CreateTicketsTable' => $baseDir . '/database/migrations/2016_01_21_153730_create_tickets_table.php',

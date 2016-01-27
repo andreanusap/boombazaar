@@ -10,9 +10,9 @@ class Product extends Model {
 			'id' 
 	];
 	public function shop() {
-		return $this->belongsTo ( 'App\Shop' );
+		return $this->belongsTo ( 'App\Model\Shop' );
 	}
 	public function productImage() {
-		return $this->hasMany ( 'App\ProductImage', 'product_ID' );
+		return $this->hasMany ( 'App\Model\ProductImage', 'product_ID' );
 	}
 }

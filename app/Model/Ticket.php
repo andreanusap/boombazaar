@@ -8,7 +8,7 @@ class Ticket extends Model
 {
     public function user()
 	{
-		return $this->belongsTo('App\User');
+		return $this->belongsTo('App\Model\User');
 	}
 	public function getTitle()
 	{
@@ -16,7 +16,7 @@ class Ticket extends Model
 	}
 	public function comments()
 	{
-		return $this->hasMany('App\Comment', 'post_id');
+		return $this->hasMany('App\Model\Comment', 'post_id');
 	}
 	
 	protected $fillable = ['title', 'content', 'slug', 'status', 'user_id'];

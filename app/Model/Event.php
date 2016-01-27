@@ -10,16 +10,16 @@ class Event extends Model {
 			'id' 
 	];
 	public function organizer() {
-		return $this->belongsTo ( 'App\Organizer' );
+		return $this->belongsTo ( 'App\Model\Organizer' );
 	}
 	public function city() {
-		return $this->belongsTo ( 'App\City' );
+		return $this->belongsTo ( 'App\Model\City' );
 	}
 	public function eventMessage() {
-		return $this->hasMany ( 'App\EventMessage', 'event_ID' );
+		return $this->hasMany ( 'App\Model\EventMessage', 'event_ID' );
 	}
 	public function regions() {
-		return $this->hasMany ( 'App\EventImage', 'event_ID' );
+		return $this->hasMany ( 'App\Model\EventImage', 'event_ID' );
 	}
 	public function regions() {
 		return $this->hasMany ( 'App\EventParticipant', 'event_ID' );

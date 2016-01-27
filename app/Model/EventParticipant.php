@@ -10,9 +10,9 @@ class EventParticipant extends Model {
 			'id' 
 	];
 	public function event() {
-		return $this->belongsTo ( 'App\Event' );
+		return $this->belongsTo ( 'App\Model\Event' );
 	}
 	public function shop() {
-		return $this->belongsTo ( 'App\Shop' );
+		return $this->belongsTo ( 'App\Model\Shop' );
 	}
 }
