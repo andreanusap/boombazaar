@@ -33,6 +33,33 @@
 							</div>
 						</div>
 
+						<div
+							class="form-group{{ $errors->has('old_password') ? ' has-error' : '' }}">
+							<label class="col-md-4 control-label">Old Password</label>
+
+							<div class="col-md-6">
+								<input type="password" class="form-control" name="old_password">
+							</div>
+						</div>
+						
+						<div
+							class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+							<label class="col-md-4 control-label">Password</label>
+
+							<div class="col-md-6">
+								<input type="password" class="form-control" name="password">
+							</div>
+						</div>
+
+						<div
+							class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+							<label class="col-md-4 control-label">Confirm Password</label>
+
+							<div class="col-md-6">
+								<input type="password" class="form-control"
+									name="password_confirmation">
+							</div>
+						</div>
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
@@ -48,12 +75,11 @@
 					</form>
 					<div class="form-group">
 						<div class="col-md-6 col-md-offset-4">
-						@if ($users['facebook_id'] == NULL) 
-							<a class="btn btn-info" href="/auth/facebook">Connect to Facebook</a>
-							@else
-							<a class="btn btn-info" disabled href="/auth/facebook">Connect to Facebook</a>
-						@endif
-							
+							@if ($users['facebook_id'] == NULL) <a class="btn btn-info"
+								href="/auth/facebook">Connect to Facebook</a> @else <a
+								class="btn btn-info" disabled href="/auth/facebook">Connect to
+								Facebook</a> @endif
+
 						</div>
 					</div>
 				</div>

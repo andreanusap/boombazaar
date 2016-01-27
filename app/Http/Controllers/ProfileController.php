@@ -17,4 +17,12 @@ class ProfileController extends Controller
 		$users = User::where( 'id',$user )->first();
 		return view ( 'auth.profile', compact ( 'users' ) );
 	}
+	
+	public function update( ProfileFormRequest $request) {
+		$user = Auth::user()->id;
+		$profile = User::where( 'id',$user )->first();
+		$profile->name = $request->get ( 'name' );
+		$profile->save ();
+		return redirect ( action ( 'profileController@show' ) )->with ( 'status', 'Profile has been updated!' );
+	}
 }
