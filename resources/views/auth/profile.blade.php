@@ -94,6 +94,10 @@
 								href="/auth/facebook">Connect to Facebook</a> @else <a
 								class="btn btn-info" disabled href="/auth/facebook">Connect to
 								Facebook</a> @endif
+							@if ($users['google_id'] == NULL) <a class="btn btn-danger"
+								href="/auth/google">Connect to Google</a> @else <a
+								class="btn btn-danger" disabled href="/auth/google">Connect to
+								Google</a> @endif
 
 						</div>
 					</div>

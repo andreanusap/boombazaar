@@ -37,9 +37,9 @@ class AuthController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		$this->middleware ( 'guest', [ 
-				'except' => 'logout' 
-		] );
+		// $this->middleware ( 'guest', [
+		// 'except' => 'logout'
+		// ] );
 	}
 	
 	/**
@@ -49,7 +49,7 @@ class AuthController extends Controller {
 	 * @return \Illuminate\Contracts\Validation\Validator
 	 */
 	protected function validator(array $data) {
-		return Validator::make ( $data, [ ]
+		return Validator::make ( $data, [ ] )
 		// 'userName' => 'required|max:255',
 		// 'firstName' => 'required|max:255',
 		// 'lastName' => 'required|max:255',
@@ -61,7 +61,7 @@ class AuthController extends Controller {
 		// 'postalCode' => 'required|max:255',
 		// 'email' => 'required|email|max:255|unique:users',
 		// 'password' => 'required|confirmed|min:6'
-		 );
+		;
 	}
 	
 	/**
@@ -100,7 +100,10 @@ class AuthController extends Controller {
 		}
 		
 		$authUser = $this->findOrCreateUser ( $user, $provider );
-		Auth::login ( $authUser, true );
+		if (! Auth::check ()) {
+			Auth::login ( $authUser, true );
+		}
+		
 		return redirect ( 'home' );
 		
 		// $user->token;
@@ -117,14 +120,39 @@ class AuthController extends Controller {
 		if ($provider == "facebook")
 			$providerId = "facebook_id";
 		else
-			$providerId = "twitter_id";
+			$providerId = "google_id";
 		
 		$authUser = User::where ( $providerId, $user->id )->first ();
+		
+		if (Auth::check ()) {
+			
+			if ($authUser) {
+				if ($providerId == "facebook_id") {
+					$authUser = User::where ( 'google_id', $user->id )->first ();
+					if ($authUser != null) {
+						return $authUser;
+					}
+				}
+				if ($providerId == "google_id") {
+					$authUser = User::where ( 'facebook_id', $user->id )->first ();
+					if ($authUser != null) {
+						return $authUser;
+					}
+				}
+			} 
+
+			else {
+				$getIdUser = Auth::user ()->id;
+				User::where ( 'id', $getIdUser )->update ( [ 
+						$providerId => $user->id 
+				] );
+				return $authUser;
+			}
+		}
 		
 		if ($authUser == null) {
 			$authUser = User::where ( 'email', $user->email )->first ();
 			if ($authUser != null) {
-				
 				User::where ( 'email', $user->email )->update ( [ 
 						$providerId => $user->id 
 				] );
@@ -132,17 +160,10 @@ class AuthController extends Controller {
 			}
 		}
 		
-		if ($authUser) {
-			return $authUser;
-		}
-		
 		return User::create ( [ 
 				'name' => $user->name,
 				'email' => $user->email,
 				$providerId => $user->id 
 		] );
-	}
-	private function alala() {
-		dd ( Socialite::driver ( 'facebook' )->user () );
 	}
 }

@@ -19,7 +19,7 @@ class User extends Authenticatable
 	protected $fillable = [
 	        'rowStatus','firstName','lastName','username', 'password', 'email',
 			'isVerified','createdBy','lastModifiedBy','address','postalCode',
-			'phoneHome','phoneCell','facebook_id'
+			'phoneHome','phoneCell','name','facebook_id','google_id'
 	    ];
 
     /**

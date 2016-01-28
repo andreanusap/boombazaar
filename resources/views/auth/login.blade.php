@@ -62,6 +62,7 @@
                     <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                     <a class="btn btn-info" href="auth/facebook">Login with Facebook</a>
+                                    <a class="btn btn-danger" href="auth/google">Login with Google</a>
                             </div>
                         </div>
                 </div>

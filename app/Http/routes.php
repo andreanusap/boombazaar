@@ -24,11 +24,20 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-	Route::auth();
+
+	Route::POST('login',['middleware' => 'guest', 'uses' => 'Auth\AuthController@login']);
+	Route::GET('login',['middleware' => 'guest', 'uses' => 'Auth\AuthController@showLoginForm']);
+	Route::GET('logout','Auth\AuthController@logout');
+	Route::POST('password/email','Auth\PasswordController@sendResetLinkEmail');
+	Route::POST('password/reset ','Auth\PasswordController@reset');
+	Route::GET('password/reset/{token?}','Auth\PasswordController@showResetForm');
+	Route::POST('register','Auth\AuthController@register');
+	Route::GET('register','Auth\AuthController@showRegistrationForm');
+	
     Route::get('/', 'PagesController@home');
 	Route::get('/home', 'PagesController@home');
 	Route::get('/about', ['middleware' => 'auth', 'uses' => 'PagesController@about']);
-	Route::get('/contact', 'TicketsController@create');
+	Route::get('/contact', ['middleware' => 'auth', 'uses'=>'TicketsController@create']);
 	Route::post('/contact', 'TicketsController@store');
 	Route::get('/tickets', 'TicketsController@index');
 	Route::get('/ticket/{slug?}', 'TicketsController@show');
