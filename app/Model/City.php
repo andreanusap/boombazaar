@@ -8,6 +8,7 @@ class City extends Model
 {
     //
 	protected $guarded = ['id'];
+	protected $table = 'city';
 	
 	public function user()
 	{
@@ -16,6 +17,6 @@ class City extends Model
 	
 	public function regions()
 	{
-		return $this->hasMany('App\Comment', 'region_ID');
+		return $this->hasMany('App\Model\Region', 'regionID');
 	}
 }

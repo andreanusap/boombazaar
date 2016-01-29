@@ -74,7 +74,10 @@ class AuthController extends Controller {
 		return User::create ( [ 
 				'name' => $data ['name'],
 				'email' => $data ['email'],
-				'password' => bcrypt ( $data ['password'] ) 
+				'password' => bcrypt ( $data ['password'] ),
+				'birthDate'=> $data ['birthDate'],
+				'isVerified' => 0,
+				'rowStatus' => 0
 		] );
 	}
 	
@@ -102,6 +105,7 @@ class AuthController extends Controller {
 		$authUser = $this->findOrCreateUser ( $user, $provider );
 		if (! Auth::check ()) {
 			Auth::login ( $authUser, true );
+			//return redirect ( 'register' )->with ( 'status', 'Register Success, please verify your email (' . $user->email . ') at your inbox email.' );
 		}
 		
 		return redirect ( 'home' );
@@ -163,7 +167,9 @@ class AuthController extends Controller {
 		return User::create ( [ 
 				'name' => $user->name,
 				'email' => $user->email,
-				$providerId => $user->id 
+				$providerId => $user->id,
+				'isVerified' => 0,
+				'rowStatus' => 0
 		] );
 	}
 }

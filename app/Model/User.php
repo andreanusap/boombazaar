@@ -17,9 +17,11 @@ class User extends Authenticatable
 //     ];
 
 	protected $fillable = [
-	        'rowStatus','firstName','lastName','username', 'password', 'email',
-			'isVerified','createdBy','lastModifiedBy','address','postalCode',
-			'phoneHome','phoneCell','name','facebook_id','google_id'
+	        'name','username', 'password', 'email','birthDate',
+			'isVerified','cityId','address','address','postalCode',
+			'phoneHome','phoneCell','facebook_id','google_id',
+			'created_by','update_by','update_at','rowstatus'
+			
 	    ];
 
     /**
