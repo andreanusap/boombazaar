@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Auth;
 use Socialite;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller {
 	/*
@@ -30,6 +31,7 @@ class AuthController extends Controller {
 	 * @var string
 	 */
 	protected $redirectTo = '/home';
+	
 	
 	/**
 	 * Create a new authentication controller instance.
@@ -71,6 +73,8 @@ class AuthController extends Controller {
 	 * @return User
 	 */
 	protected function create(array $data) {
+		//$this-> redirectTo = '/register';
+		//$this -> with ( 'status', 'Register Success, please verify your email (' . $data->email . ') at your inbox email.' );
 		return User::create ( [ 
 				'name' => $data ['name'],
 				'email' => $data ['email'],
@@ -81,6 +85,21 @@ class AuthController extends Controller {
 		] );
 	}
 	
+	public function register(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+        $authUser = $this->create($request->all());
+        //Auth::guard($this->getGuard())->login($this->create($request->all()));
+
+        return redirect('home')-> with ( 'status', 'Register Success, please verify your email (' . $request->email . ') at your inbox email.' );
+    }
+
 	/**
 	 * Redirect the user to the facebook authentication page.
 	 *
@@ -105,11 +124,11 @@ class AuthController extends Controller {
 		$authUser = $this->findOrCreateUser ( $user, $provider );
 		if (! Auth::check ()) {
 			Auth::login ( $authUser, true );
-			//return redirect ( 'register' )->with ( 'status', 'Register Success, please verify your email (' . $user->email . ') at your inbox email.' );
 		}
 		
-		return redirect ( 'home' );
-		
+		//return redirect ( 'home' );
+		//return redirect ( '/register' )->with ( 'status', 'Register Success, please verify your email (' . $user->email . ') at your inbox email.' );
+		return redirect ( '/profile' )->with ( 'status', 'Connect ' . $provider . ' success.' );
 		// $user->token;
 	}
 	

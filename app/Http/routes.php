@@ -36,10 +36,10 @@ Route::group(['middleware' => ['web']], function () {
 	
     Route::get('/', 'PagesController@home');
 	Route::get('/home', 'PagesController@home');
-	Route::get('/about', ['middleware' => 'auth', 'uses' => 'PagesController@about']);
-	Route::get('/contact', ['middleware' => 'auth', 'uses'=>'TicketsController@create']);
+	Route::get('/about', 'PagesController@about');
+	Route::get('/contact','TicketsController@create');
 	Route::post('/contact', 'TicketsController@store');
-	Route::get('/tickets', 'TicketsController@index');
+	Route::get('/tickets', ['middleware' => 'auth', 'uses' => 'TicketsController@index']);
 	Route::get('/ticket/{slug?}', 'TicketsController@show');
 	Route::get('/ticket/{slug?}/edit','TicketsController@edit');
 	Route::post('/ticket/{slug?}/edit','TicketsController@update');

@@ -7,6 +7,16 @@
 				<div class="panel-body">
 					<form class="form-horizontal" role="form" method="POST"
 						action="{{ url('/profile') }}">
+						@if (isset($errors) && $errors->any())
+                		@foreach ($errors->all() as $error)
+                    		<p class="alert alert-danger">{{ $error }}</p>
+                		@endforeach
+						@endif
+                		@if (session('status'))
+                    		<div class="alert alert-success">
+                        	{{ session('status') }}
+                    		</div>
+                		@endif
 						{!! csrf_field() !!}
 
 						<div
@@ -73,6 +83,29 @@
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
                                     </span>
                                 @endif
+							</div>
+						</div>
+						
+						<div
+							class="form-group{{ $errors->has('birthDate') ? ' has-error' : '' }}">
+							<label class="col-md-4 control-label">Birth Date</label>
+							<div class="col-md-6">
+
+								<input type="text" class="form-control" id="birthDate"
+									name="birthDate" value="{!! $users['birthDate'] !!}">
+								<script type="text/javascript">
+            					// When the document is ready
+            					$(document).ready(function () {
+                
+                					$('#birthDate').datepicker({
+                   	 				format: "yyyy-mm-dd"
+                					});  
+            
+            					});
+        						</script>
+								@if ($errors->has('birthDate')) <span class="help-block"> <strong>{{$errors->first('birthDate')
+										}}</strong>
+								</span> @endif
 							</div>
 						</div>
 
