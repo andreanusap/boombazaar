@@ -19,106 +19,153 @@
                 		@endif
 
                 <!-- works -->
-<div id="works"  class=" clearfix grid"> 
-    <figure class="effect-oscar  wowload fadeIn">
-        <img src="images/portfolio/1.jpg" alt="img01"/>
+<div id="works"  class=" clearfix grid" > 
+    <figure class="effect-ruby  wowload fadeInUp" >
+        <img src="images/portfolio/1.jpg" alt="img01" width="200" height="200"/>
         <figcaption>
-            <h2>Bandung</h2>
+            <h6>Bandung</h6>
             <p>Cooming Soon<br>
             <a href="images/portfolio/1.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
      <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/2.jpg" alt="img01"/>
+        <img src="images/portfolio/2.jpg" alt="img01 " width="200" height="200"/>
         <figcaption>
-            <h2>Jakarta</h2>
+            <h6>Jakarta</h6>
             <p>April 2016<br>
             <a href="images/portfolio/2.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
-     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/3.jpg" alt="img01"/>
+     <figure class="effect-milo  wowload fadeInUp">
+        <img src="images/portfolio/3.jpg" alt="img01" width="200" height="200"/>
         <figcaption>
-            <h2>Surabaya</h2>
+            <h6>Surabaya</h6>
             <p>Lily likes to play with crayons and pencils<br>
             <a href="images/portfolio/3.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
-     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/4.jpg" alt="img01"/>
+     <figure class="effect-bubba  wowload fadeInUp">
+        <img src="images/portfolio/4.jpg" alt="img01" width="200" height="200"/>
         <figcaption>
-            <h2>Tangerang</h2>
+            <h6>Tangerang</h6>
             <p>Lily likes to play with crayons and pencils<br>
             <a href="images/portfolio/4.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
-     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/5.jpg" alt="img01"/>
+     <figure class="effect-romeo  wowload fadeInUp">
+        <img src="images/portfolio/5.jpg" alt="img01" width="200" height="200"/>
         <figcaption>
-            <h2>BSD</h2>
+            <h6>BSD</h6>
             <p>Lily likes to play with crayons and pencils<br>
             <a href="images/portfolio/5.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
      
-     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/6.jpg" alt="img01"/>
+     <figure class="effect-layla  wowload fadeInUp">
+        <img src="images/portfolio/6.jpg" alt="img01" width="200" height="200"/>
         <figcaption>
-            <h2>Yogyakarta</h2>
+            <h6>Yogyakarta</h6>
             <p>Lily likes to play with crayons and pencils<br>
             <a href="images/portfolio/6.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/7.jpg" alt="img01"/>
+    <figure class="effect-dexter  wowload fadeInUp">
+        <img src="images/portfolio/7.jpg" alt="img01" width="200" height="200"/>
         <figcaption>
-            <h2>Klaten</h2>
+            <h6>Klaten</h6>
             <p>Lily likes to play with crayons and pencils<br>
             <a href="images/portfolio/7.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/8.jpg" alt="img01"/>
+    <figure class="effect-sarah  wowload fadeInUp">
+        <img src="images/portfolio/8.jpg" alt="img01" width="200" height="200"/>
         <figcaption>
-            <h2>Bintaro</h2>
+            <h6>Bintaro</h6>
             <p>Lily likes to play with crayons and pencils<br>
             <a href="images/portfolio/8.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/9.jpg" alt="img01"/>
+    <figure class="effect-zoe  wowload fadeInUp">
+        <img src="images/portfolio/9.jpg" alt="img01" width="200" height="200"/>
         <figcaption>
-            <h2>Papua</h2>
+            <h6>Papua</h6>
             <p>Lily likes to play with crayons and pencils<br>
             <a href="images/portfolio/9.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/10.jpg" alt="img01"/>
+    <figure class="effect-chico  wowload fadeInUp">
+        <img src="images/portfolio/10.jpg" alt="img01" width="200" height="200"/>
         <figcaption>
-            <h2>Sumatra</h2>
+            <h6>Sumatra</h6>
             <p>Lily likes to play with crayons and pencils<br>
             <a href="images/portfolio/10.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/11.jpg" alt="img01"/>
+        <img src="images/portfolio/11.jpg" alt="img01" width="200" height="200"/>
         <figcaption>
-            <h2>Sulawesi</h2>
+            <h6>Sulawesi</h6>
             <p>Lily likes to play with crayons and pencils<br>
             <a href="images/portfolio/11.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/12.jpg" alt="img01"/>
+        <img src="images/portfolio/12.jpg" alt="img01" width="200" height="200"/>
         <figcaption>
-            <h2>Indonesia</h2>
+            <h6>Indonesia</h6>
             <p>Lily likes to play with crayons and pencils<br>
             <a href="images/portfolio/12.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
-    
-
+    <figure class="effect-ruby  wowload fadeInUp" >
+        <img src="images/portfolio/1.jpg" alt="img01" width="200" height="200"/>
+        <figcaption>
+            <h6>Bandung</h6>
+            <p>Cooming Soon<br>
+            <a href="images/portfolio/1.jpg" title="1" data-gallery>View more</a></p>            
+        </figcaption>
+    </figure>
+     <figure class="effect-oscar  wowload fadeInUp">
+        <img src="images/portfolio/2.jpg" alt="img01 " width="200" height="200"/>
+        <figcaption>
+            <h6>Jakarta</h6>
+            <p>April 2016<br>
+            <a href="images/portfolio/2.jpg" title="1" data-gallery>View more</a></p>            
+        </figcaption>
+    </figure>
+     <figure class="effect-milo  wowload fadeInUp">
+        <img src="images/portfolio/3.jpg" alt="img01" width="200" height="200"/>
+        <figcaption>
+            <h6>Surabaya</h6>
+            <p>Lily likes to play with crayons and pencils<br>
+            <a href="images/portfolio/3.jpg" title="1" data-gallery>View more</a></p>            
+        </figcaption>
+    </figure>
+     <figure class="effect-bubba  wowload fadeInUp">
+        <img src="images/portfolio/4.jpg" alt="img01" width="200" height="200"/>
+        <figcaption>
+            <h6>Tangerang</h6>
+            <p>Lily likes to play with crayons and pencils<br>
+            <a href="images/portfolio/4.jpg" title="1" data-gallery>View more</a></p>            
+        </figcaption>
+    </figure>
+     <figure class="effect-romeo  wowload fadeInUp">
+        <img src="images/portfolio/5.jpg" alt="img01" width="200" height="200"/>
+        <figcaption>
+            <h6>BSD</h6>
+            <p>Lily likes to play with crayons and pencils<br>
+            <a href="images/portfolio/5.jpg" title="1" data-gallery>View more</a></p>            
+        </figcaption>
+    </figure>
+     
+     <figure class="effect-layla  wowload fadeInUp">
+        <img src="images/portfolio/6.jpg" alt="img01" width="200" height="200"/>
+        <figcaption>
+            <h6>Yogyakarta</h6>
+            <p>Lily likes to play with crayons and pencils<br>
+            <a href="images/portfolio/6.jpg" title="1" data-gallery>View more</a></p>            
+        </figcaption>
+    </figure>
      
 </div>
 <!-- works -->
@@ -170,13 +217,13 @@
 <div class="container">
 <div class="row text-center  wowload fadeInDownBig">
   <div class="col-sm-3 col-xs-6">
-  <i class="fa fa-smile-o  fa-5x"></i><h4>24 Clients</h4>
+  <i class="fa fa-smile-o  fa-5x"></i><h4>24 EventOrganizers</h4>
   </div>
   <div class="col-sm-3 col-xs-6">
-  <i class="fa fa-rocket  fa-5x"></i><h4>75 Projects</h4>
+  <i class="fa fa-rocket  fa-5x"></i><h4>75 Shops</h4>
   </div>
   <div class="col-sm-3 col-xs-6">
-  <i class="fa fa-cloud-download  fa-5x"></i><h4>454 Downloads</h4>
+  <i class="fa fa-cloud-download  fa-5x"></i><h4>454 Events</h4>
   </div>
   <div class="col-sm-3 col-xs-6">
   <i class="fa fa-map-marker fa-5x"></i><h4>2 Offices</h4>
@@ -243,7 +290,7 @@
 
 
 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
-<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" >
     <!-- The container for the modal slides -->
     <div class="slides"></div>
     <!-- Controls for the borderless lightbox -->
