@@ -49,4 +49,6 @@ Route::group(['middleware' => ['web']], function () {
  	Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
  	Route::get('/profile','ProfileController@show');
  	Route::post('/profile','ProfileController@update');
+ 	Route::get('/profile/{token?}/verify','ProfileController@verify');
+ 	Route::post('/profile/{token?}/verify','ProfileController@verify');
 });

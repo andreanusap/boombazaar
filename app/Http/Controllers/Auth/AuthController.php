@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Auth;
 use Socialite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller {
 	/*
@@ -81,7 +82,8 @@ class AuthController extends Controller {
 				'password' => bcrypt ( $data ['password'] ),
 				'birthDate'=> $data ['birthDate'],
 				'isVerified' => 0,
-				'rowStatus' => 0
+				'rowStatus' => 0,
+				'token'=> $data ['_token']
 		] );
 	}
 	
@@ -96,6 +98,17 @@ class AuthController extends Controller {
         }
         $authUser = $this->create($request->all());
         //Auth::guard($this->getGuard())->login($this->create($request->all()));
+
+        $data = array (
+				'email' => $request->email ,
+        		'token' => $request->_token
+		);
+        
+        Mail::send ( 'emails.verify', $data, function ($message) use ($request){
+        	$message->from ( 'rio.purwanggono@yahoo.co.id', 'Boom Bazaar Team' );
+        		
+        	$message->to ( $request->email )->subject ( 'Boom Bazaar Email Verification' );
+        } );
 
         return redirect('home')-> with ( 'status', 'Register Success, please verify your email (' . $request->email . ') at your inbox email.' );
     }

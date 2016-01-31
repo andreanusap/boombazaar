@@ -26,4 +26,13 @@ class ProfileController extends Controller
 		$profile->save ();
 		return redirect ( '/profile' )->with ( 'status', 'Profile has been updated!' );
 	}
+	public function verify($token, ProfileFormRequest $request) {
+		$profile = User::where([
+    			['isVerified','0'],
+    			['token',$token],
+				])->firstOrFail ();
+		$profile->isVerified = 1;
+		$profile->save ();
+		return redirect ( '/home' )->with ( 'status', 'Verification email ' . $profile->email . ' success' );
+	}
 }

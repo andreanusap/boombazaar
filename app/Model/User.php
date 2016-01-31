@@ -20,7 +20,7 @@ class User extends Authenticatable
 	        'name','username', 'password', 'email','birthDate',
 			'isVerified','cityId','address','address','postalCode',
 			'phoneHome','phoneCell','facebook_id','google_id',
-			'created_by','update_by','update_at','rowstatus'
+			'created_by','update_by','update_at','rowstatus','token'
 			
 	    ];
 

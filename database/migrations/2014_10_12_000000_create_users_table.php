@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('created_by',50)->nullable();
             $table->string('updated_by',50)->nullable();
             $table->integer('rowStatus');
+            $table->string('token')->nullable();
         });
     }
 
