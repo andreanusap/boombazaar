@@ -51,4 +51,5 @@ Route::group(['middleware' => ['web']], function () {
  	Route::post('/profile','ProfileController@update');
  	Route::get('/profile/{token?}/verify','ProfileController@verify');
  	Route::post('/profile/{token?}/verify','ProfileController@verify');
+ 	Route::get('/event', ['middleware' => 'auth', 'uses' => 'EventController@event']);
 });
