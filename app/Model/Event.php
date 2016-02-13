@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model {
 	//
+	protected $fillable = [
+			'eventName','eventDesc', 'location', 'termsCond','cityId',
+			'organizerId','created_by','update_by','update_at','rowstatus'
+	];
+	
 	protected $guarded = [ 
 			'id' 
 	];
@@ -15,13 +20,13 @@ class Event extends Model {
 	public function city() {
 		return $this->belongsTo ( 'App\Model\City' );
 	}
-	public function eventMessage() {
+	public function eventMessages() {
 		return $this->hasMany ( 'App\Model\EventMessage', 'event_ID' );
 	}
-	public function regions() {
+	public function images() {
 		return $this->hasMany ( 'App\Model\EventImage', 'event_ID' );
 	}
-	public function regions() {
-		return $this->hasMany ( 'App\EventParticipant', 'event_ID' );
+	public function eventParticipants() {
+		return $this->hasMany ( 'App\Model\EventParticipant', 'event_ID' );
 	}
 }

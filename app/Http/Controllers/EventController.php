@@ -14,5 +14,8 @@ class EventController extends Controller
 	{
 		return view('event.event');
 	}
-	
+	public function create()
+	{
+		return view('event.create');
+	}
 }
