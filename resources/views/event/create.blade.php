@@ -19,6 +19,7 @@
         <div class="row fileupload-buttonbar">
             <div class="col-lg-7">
                 <!-- The fileinput-button span is used to style the file input field as button -->
+                <input type="hidden" name="path" value="{!! Auth::user()->id; !!}">
                 <span class="btn btn-success fileinput-button">
                     
                     <span>Add files...</span>

@@ -211,8 +211,9 @@ class UploadHandler
     }
 
     protected function get_user_path() {
+    	$path = $_POST['path'];
         if ($this->options['user_dirs']) {
-            return $this->get_user_id().'/tes/';
+            return $this->get_user_id().'/'.$path.'/tes/';
         }
         return '';
     }
