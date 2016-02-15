@@ -25,6 +25,7 @@ return array(
     'CreateCommentsTable' => $baseDir . '/database/migrations/2016_01_24_120312_create_comments_table.php',
     'CreateEventimagesTable' => $baseDir . '/database/migrations/2016_02_13_172234_create_eventimages_table.php',
     'CreateEventsTable' => $baseDir . '/database/migrations/2016_02_13_165627_create_events_table.php',
+    'CreateOrganizersTable' => $baseDir . '/database/migrations/2016_02_14_141356_create_organizers_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateTicketTable' => $baseDir . '/database/migrations/2016_01_21_152109_create_ticket_table.php',
     'CreateTicketsTable' => $baseDir . '/database/migrations/2016_01_21_153730_create_tickets_table.php',

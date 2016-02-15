@@ -54,5 +54,9 @@ Route::group(['middleware' => ['web']], function () {
  	Route::get('/event', ['middleware' => 'auth', 'uses' => 'EventController@event']);
  	Route::get('/event/create',['middleware' => 'auth', 'uses' => 'EventController@create']);
  	Route::post('/event/create',['middleware' => 'auth', 'uses' => 'EventController@create']);
+ 	Route::get('/organizer/create',['middleware' => 'auth', 'uses' => 'OrganizerController@create']);
+ 	Route::post('/organizer/create',['middleware' => 'auth', 'uses' => 'OrganizerController@create']);
+ 	Route::get('/createOrganizer',['middleware' => 'auth', 'uses' => 'OrganizerController@createOrganizer']);
+ 	Route::post('/createOrganizer',['middleware' => 'auth', 'uses' => 'OrganizerController@createOrganizer']);
  	
 });
